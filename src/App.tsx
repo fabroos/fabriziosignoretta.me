@@ -38,7 +38,7 @@ const socialMedia = [
     icon: <Github />
   },
   {
-    url: 'https://www.linkedin.com/in/fabroos/',
+    url: 'https://www.linkedin.com/in/signorettafabrizio/',
     icon: <Linkedin />
   },
   {
@@ -46,7 +46,7 @@ const socialMedia = [
     icon: <Mail />
   },
   {
-    url: 'https://www.instagram.com/fabroos/',
+    url: 'https://www.instagram.com//fabrii_signoretta/',
     icon: <Instagram />
   }
 ]
