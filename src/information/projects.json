@@ -1,0 +1,23 @@
+[
+  {
+    "src": "images/moviedle.png",
+    "hrefs": {
+      "github": "https://github.com/fabroos/SkillUpI",
+      "demo": "https://movies-app-alkemy.vercel.app"
+    }
+  },
+  {
+    "src": "images/manage.png",
+    "hrefs": {
+      "github": "https://github.com/fabroos/frontend1-final",
+      "demo": "http://fabriziosignoretta.me/frontend1-final/"
+    }
+  },
+  {
+    "src": "images/himitsu.png",
+    "hrefs": {
+      "github": "https://github.com/fabroos/Himitsu.store",
+      "demo": "https://himitsu-store.vercel.app/"
+    }
+  }
+]
