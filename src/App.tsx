@@ -5,12 +5,42 @@ import { SocialMediaList } from './components/SocialMediaList'
 import { Header } from './components/Header'
 import projects from './information/projects.json'
 import { AboutMe } from './components/AboutMe'
+import { useEffect } from 'react'
+import { Spotify } from './icons/Spotify'
+
+type spotifyTrack = {
+  listen: boolean
+  data: {
+    song: string
+    artist: string
+    album: string
+    track_id: string
+  }
+}
 
 const App = () => {
-  useState(() => {
-    localStorage.getItem('theme') === 'dark' &&
-      document.documentElement.classList.add('dark')
+  const [spotify, setSpotify] = useState<spotifyTrack>({
+    listen: false,
+    data: {
+      song: '',
+      artist: '',
+      album: '',
+      track_id: ''
+    }
   })
+  useEffect(() => {
+    fetch(
+      'https://api.lanyard.rest/v1/users/' + import.meta.env.SPOTIFY_USER_ID
+    )
+      .then(res => res.json())
+      .then(data => {
+        setSpotify({
+          listen: data.data.listening_to_spotify,
+          data: data.data.spotify
+        })
+      })
+  }, [])
+
   return (
     <div className='App dark:bg-gray-900 min-h-screen dark:text-white'>
       <Header />
@@ -29,10 +59,28 @@ const App = () => {
                 coffee and learn.
               </p>
               <div className='text-white flex gap-6 justify-center md:justify-start'>
-                <SocialMediaList />
+                <SocialMediaList />z
               </div>
             </div>
           </div>
+
+          {spotify.listen && (
+            <a
+              href={`https://open.spotify.com/track/${spotify.data.track_id}`}
+              className='mt-4'
+              target='_BLANK'
+            >
+              <article className='p-2 hover:scale-105 transition-all max-w-[290px] bg-black/10 dark:bg-white/20 rounded-lg flex flex-col gap-1'>
+                <div className='flex w-full justify-between gap-1 items-start'>
+                  <p className='text-xs'>{spotify.data.song}</p>
+                  <Spotify className='w-6 fill-current text-green-500 ' />
+                </div>
+                <p className='text-[9px] text-gray-700 dark:text-gray-400'>
+                  {spotify.data.artist.replace(';', ',')}
+                </p>
+              </article>
+            </a>
+          )}
         </motion.article>
         <AboutMe />
         <motion.section className='flex flex-col justify-center mb-4'>
